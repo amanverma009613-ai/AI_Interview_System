@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Home | AI Interview</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
+
+.navbar{
+    height:72px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    box-shadow:0 2px 15px rgba(0,0,0,.06);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:800;
+    color:#2563eb;
+}
+
+.logo span{
+    color:#111827;
+}
+
+.nav{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+.nav a{
+    text-decoration:none;
+    color:#4b5563;
+    font-size:14px;
+    font-weight:600;
+}
+
+.nav a:hover,
+.nav a.active{
+    color:#2563eb;
+}
+
+.logout{
+    background:#fee2e2;
+    color:#dc2626 !important;
+    padding:9px 15px;
+    border-radius:8px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 25px;
+}
+
+.welcome{
+    margin-bottom:30px;
+}
+
+.welcome h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#6b7280;
+}
+
+.hero{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:white;
+    padding:50px;
+    border-radius:22px;
+    margin-bottom:40px;
+}
+
+.hero h2{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    max-width:750px;
+    line-height:1.8;
+    color:#e5e7eb;
+}
+
+.section-title{
+    margin:45px 0 22px;
+}
+
+.section-title h2{
+    font-size:26px;
+}
+
+.section-title p{
+    color:#6b7280;
+    margin-top:7px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:27px;
+    border-radius:17px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.card-icon{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#6b7280;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.domain-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.domain{
+    background:white;
+    padding:20px;
+    text-align:center;
+    border-radius:13px;
+    border:1px solid #e5e7eb;
+}
+
+.domain-icon{
+    font-size:27px;
+    margin-bottom:9px;
+}
+
+.domain h4{
+    font-size:14px;
+}
+
+.info{
+    background:white;
+    padding:30px;
+    border-radius:17px;
+    line-height:1.8;
+    color:#5b6475;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#9ca3af;
+}
+
+@media(max-width:900px){
+
+    .nav{
+        gap:10px;
+    }
+
+    .nav a{
+        font-size:12px;
+    }
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .domain-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .navbar{
+        height:auto;
+        padding:15px;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .cards,
+    .domain-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding:30px;
+    }
+
+    .hero h2{
+        font-size:29px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        AI<span>Interview</span>
+    </div>
+
+    <div class="nav">
+
+        <a href="/home" class="active">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/resume">Resume</a>
+        <a href="/interview-home">Interview</a>
+        <a href="/performance">Performance</a>
+        <a href="/profile">Profile</a>
+        <a href="/help">Help</a>
+        <a href="/logout" class="logout">Logout</a>
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="welcome">
+
+        <h1>
+            Welcome, {{ session.get("user_name", "User") }} 👋
+        </h1>
+
+        <p>
+            Welcome to your AI-powered interview preparation workspace.
+        </p>
+
+    </div>
+
+
+    <div class="hero">
+
+        <h2>Prepare Smarter. Interview Better.</h2>
+
+        <p>
+            Our AI-powered interview preparation system helps
+            you analyze your resume, practice personalized
+            interview questions and understand your performance
+            through intelligent feedback.
+        </p>
+
+    </div>
+
+
+    <div class="section-title">
+        <h2>What You Can Do</h2>
+        <p>Each feature is available separately from the navigation bar.</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-icon">📄</div>
+            <h3>Resume</h3>
+            <p>
+                Upload your resume and view AI-powered
+                resume analysis.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🎤</div>
+            <h3>Interview</h3>
+            <p>
+                Select a domain and start your
+                personalized AI interview.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📊</div>
+            <h3>Dashboard</h3>
+            <p>
+                View your interview progress,
+                statistics and recent activity.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📈</div>
+            <h3>Performance</h3>
+            <p>
+                Review scores and AI-generated
+                improvement feedback.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">👤</div>
+            <h3>Profile</h3>
+            <p>
+                Manage your personal profile
+                information.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">❓</div>
+            <h3>Help</h3>
+            <p>
+                Learn how the system works and
+                find answers to common questions.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="section-title">
+        <h2>Supported Domains</h2>
+        <p>Our system supports multiple career fields.</p>
+    </div>
+
+    <div class="domain-grid">
+
+        {% for domain in domains %}
+
+        <div class="domain">
+
+            <div class="domain-icon">
+
+                {% if domain == "IT & Software" %}💻
+                {% elif domain == "Data Analyst" %}📊
+                {% elif domain == "Business & Management" %}💼
+                {% elif domain == "Hotel & Restaurant" %}🏨
+                {% elif domain == "HR" %}👥
+                {% elif domain == "General / Other" %}🌐
+                {% elif domain == "Marketing & Sales" %}📣
+                {% elif domain == "Finance & Accounting" %}💰
+                {% elif domain == "Healthcare & Medical" %}🏥
+                {% elif domain == "Legal & Law" %}⚖️
+                {% elif domain == "Design & Creative" %}🎨
+                {% elif domain == "Engineering & Technical" %}⚙️
+                {% endif %}
+
+            </div>
+
+            <h4>{{ domain }}</h4>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="section-title">
+        <h2>How Your Preparation Works</h2>
+    </div>
+
+    <div class="info">
+
+        <strong>1. Resume Analysis</strong><br>
+        Your resume can be uploaded from the separate Resume section.
+
+        <br><br>
+
+        <strong>2. Domain Selection</strong><br>
+        Choose the career field you want to prepare for.
+
+        <br><br>
+
+        <strong>3. AI Interview</strong><br>
+        AI creates personalized questions and evaluates your answers.
+
+        <br><br>
+
+        <strong>4. Performance</strong><br>
+        Your scores and feedback can be reviewed from the Performance section.
+
+    </div>
+
+</div>
+
+<footer>
+    AI-Powered Multi-Domain Interview Preparation and Smart Feedback System
+</footer>
+
+</body>
+</html>

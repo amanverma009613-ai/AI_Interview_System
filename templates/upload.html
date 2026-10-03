@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload Resume - AI Interview System</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:#f5f7fb;
+        }
+
+        .header{
+            height:70px;
+            background:linear-gradient(135deg,#667eea,#764ba2);
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 45px;
+        }
+
+        .logo{
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .back{
+            background:white;
+            color:#764ba2;
+            border:none;
+            padding:10px 20px;
+            border-radius:20px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        .container{
+            max-width:700px;
+            margin:70px auto;
+            padding:0 20px;
+        }
+
+        .box{
+            background:white;
+            padding:45px;
+            border-radius:20px;
+            box-shadow:0 8px 30px rgba(0,0,0,0.08);
+            text-align:center;
+        }
+
+        .icon{
+            font-size:60px;
+            margin-bottom:20px;
+        }
+
+        h1{
+            margin-bottom:12px;
+        }
+
+        .subtitle{
+            color:#666;
+            margin-bottom:30px;
+            line-height:1.5;
+        }
+
+        .file-box{
+            border:2px dashed #764ba2;
+            border-radius:15px;
+            padding:35px 20px;
+            margin-bottom:25px;
+            background:#faf8ff;
+        }
+
+        input[type="file"]{
+            width:100%;
+            padding:15px;
+            border:1px solid #ddd;
+            border-radius:10px;
+            background:white;
+        }
+
+        .upload-btn{
+            border:none;
+            background:#764ba2;
+            color:white;
+            padding:13px 30px;
+            border-radius:10px;
+            cursor:pointer;
+            font-weight:bold;
+            font-size:15px;
+        }
+
+        .upload-btn:hover{
+            background:#667eea;
+        }
+
+        .note{
+            margin-top:20px;
+            color:#777;
+            font-size:13px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+
+        <div class="logo">
+            AI Interview System
+        </div>
+
+        <button class="back" onclick="window.location.href='/dashboard'">
+            Dashboard
+        </button>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="box">
+
+            <div class="icon">
+                📄
+            </div>
+
+            <h1>
+                Upload Your Resume
+            </h1>
+
+            <p class="subtitle">
+                Upload your resume to start your personalized
+                interview preparation.
+            </p>
+
+
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+
+                <div class="file-box">
+
+                    <input
+                        type="file"
+                        name="resume"
+                        accept=".pdf,.docx,.txt"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="upload-btn">
+
+                    Upload Resume & Continue
+
+                </button>
+
+            </form>
+
+
+            <p class="note">
+                Supported formats: PDF, DOCX and TXT
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

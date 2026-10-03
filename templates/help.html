@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Help | AI Interview System</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        .navbar {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 45px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .logo span {
+            color: #111827;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .logout {
+            background: #ef4444;
+            color: white !important;
+            padding: 9px 15px;
+            border-radius: 7px;
+        }
+
+        .container {
+            width: 88%;
+            max-width: 900px;
+            margin: 50px auto;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .title h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .title p {
+            color: #6b7280;
+        }
+
+        .faq {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .question {
+            width: 100%;
+            border: none;
+            background: white;
+            padding: 20px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .question:hover {
+            background: #f8fafc;
+        }
+
+        .answer {
+            display: none;
+            padding: 0 20px 20px;
+            color: #6b7280;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .faq.active .answer {
+            display: block;
+        }
+
+        .arrow {
+            font-size: 20px;
+            transition: 0.2s;
+        }
+
+        .faq.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        @media(max-width: 800px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        AI<span>Interview</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/home">Home</a>
+
+        <a href="/dashboard">Dashboard</a>
+
+        <a href="/resume">Resume</a>
+
+        <a href="/interview-home">Interview</a>
+
+        <a href="/performance">Performance</a>
+
+        <a href="/profile">Profile</a>
+
+        <a href="/help">Help</a>
+
+        <a href="/logout" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+
+    <div class="title">
+
+        <h1>
+            ❓ Help & FAQ
+        </h1>
+
+        <p>
+            Click any question to view the answer.
+        </p>
+
+    </div>
+
+
+    <div class="faq">
+
+        <button class="question">
+
+            How do I upload my resume?
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </button>
+
+        <div class="answer">
+
+            Go to the Resume page from the navigation menu.
+            Select your PDF, DOCX or TXT resume and click
+            "Upload & Analyze Resume".
+
+        </div>
+
+    </div>
+
+
+    <div class="faq">
+
+        <button class="question">
+
+            What happens after I upload my resume?
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </button>
+
+        <div class="answer">
+
+            The system extracts information from your resume
+            and displays your detected name, education,
+            experience and skills.
+
+        </div>
+
+    </div>
+
+
+    <div class="faq">
+
+        <button class="question">
+
+            Do I need to select a domain while uploading my resume?
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </button>
+
+        <div class="answer">
+
+            No. Resume upload and resume analysis are separate
+            from domain selection. Domain selection is shown
+            when you start the interview.
+
+        </div>
+
+    </div>
+
+
+    <div class="faq">
+
+        <button class="question">
+
+            How do I start an AI interview?
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </button>
+
+        <div class="answer">
+
+            First analyze your resume. Then open the Interview
+            page, select your domain and choose 5, 10, 15 or
+            20 questions. Click Start AI Interview.
+
+        </div>
+
+    </div>
+
+
+    <div class="faq">
+
+        <button class="question">
+
+            Are the interview questions generated by AI?
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </button>
+
+        <div class="answer">
+
+            Yes. The system sends your selected domain and
+            resume information to the configured AI service
+            to generate personalized interview questions.
+
+        </div>
+
+    </div>
+
+
+    <div class="faq">
+
+        <button class="question">
+
+            How does AI evaluate my answer?
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </button>
+
+        <div class="answer">
+
+            AI evaluates relevance, clarity, completeness,
+            examples and other answer qualities and provides
+            a score, strengths, improvements and a better
+            sample answer.
+
+        </div>
+
+    </div>
+
+
+    <div class="faq">
+
+        <button class="question">
+
+            What if I have not uploaded a resume?
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </button>
+
+        <div class="answer">
+
+            The Interview page will ask you to upload and
+            analyze your resume first because the system uses
+            resume information for personalized questions.
+
+        </div>
+
+    </div>
+
+
+    <div class="faq">
+
+        <button class="question">
+
+            Where can I see my interview performance?
+
+            <span class="arrow">
+                ▼
+            </span>
+
+        </button>
+
+        <div class="answer">
+
+            Open the Performance page from the navigation bar
+            to view your interview score and feedback.
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    const questions =
+        document.querySelectorAll(".question");
+
+
+    questions.forEach(
+        function(question) {
+
+            question.addEventListener(
+                "click",
+                function() {
+
+                    const faq =
+                        this.parentElement;
+
+                    faq.classList.toggle(
+                        "active"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

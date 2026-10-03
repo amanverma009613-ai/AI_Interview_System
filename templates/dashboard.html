@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard | AI Interview</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
+
+.navbar{
+    height:72px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    box-shadow:0 2px 15px rgba(0,0,0,.06);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:800;
+    color:#2563eb;
+}
+
+.logo span{
+    color:#111827;
+}
+
+.nav{
+    display:flex;
+    gap:20px;
+    align-items:center;
+}
+
+.nav a{
+    text-decoration:none;
+    color:#4b5563;
+    font-size:14px;
+    font-weight:600;
+}
+
+.nav a:hover,
+.nav a.active{
+    color:#2563eb;
+}
+
+.logout{
+    background:#fee2e2;
+    color:#dc2626 !important;
+    padding:9px 15px;
+    border-radius:8px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 25px;
+}
+
+.heading{
+    margin-bottom:30px;
+}
+
+.heading h1{
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.heading p{
+    color:#6b7280;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.stat{
+    background:white;
+    padding:28px;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.stat span{
+    color:#6b7280;
+    font-size:14px;
+}
+
+.stat h2{
+    margin-top:10px;
+    font-size:32px;
+    color:#2563eb;
+}
+
+.section{
+    margin-top:35px;
+}
+
+.section h2{
+    margin-bottom:18px;
+}
+
+.actions{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.action{
+    background:white;
+    padding:28px;
+    border-radius:16px;
+    text-decoration:none;
+    color:#111827;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.action:hover{
+    transform:translateY(-3px);
+}
+
+.action-icon{
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.action p{
+    color:#6b7280;
+    margin-top:8px;
+    line-height:1.6;
+}
+
+.feedback{
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.feedback-item{
+    padding:18px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.feedback-item:last-child{
+    border-bottom:none;
+}
+
+.score{
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.empty{
+    color:#6b7280;
+    padding:10px 0;
+}
+
+@media(max-width:800px){
+
+    .stats,
+    .actions{
+        grid-template-columns:1fr;
+    }
+
+    .navbar{
+        height:auto;
+        padding:15px;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        AI<span>Interview</span>
+    </div>
+
+    <div class="nav">
+        <a href="/home">Home</a>
+        <a href="/dashboard" class="active">Dashboard</a>
+        <a href="/resume">Resume</a>
+        <a href="/interview-home">Interview</a>
+        <a href="/performance">Performance</a>
+        <a href="/profile">Profile</a>
+        <a href="/help">Help</a>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>
+            Dashboard
+        </h1>
+
+        <p>
+            Track your interview preparation and recent activity.
+        </p>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <span>Average Score</span>
+            <h2>{{ average }}%</h2>
+        </div>
+
+        <div class="stat">
+            <span>Questions Attempted</span>
+            <h2>{{ total_questions }}</h2>
+        </div>
+
+        <div class="stat">
+            <span>Current Domain</span>
+            <h2 style="font-size:20px;">
+                {{ domain }}
+            </h2>
+        </div>
+
+    </div>
+
+
+    <div class="section">
+
+        <h2>Quick Access</h2>
+
+        <div class="actions">
+
+            <a href="/resume" class="action">
+
+                <div class="action-icon">📄</div>
+
+                <h3>Resume</h3>
+
+                <p>
+                    Upload and analyze your resume.
+                </p>
+
+            </a>
+
+
+            <a href="/interview-home" class="action">
+
+                <div class="action-icon">🎤</div>
+
+                <h3>Start Interview</h3>
+
+                <p>
+                    Select a domain and begin your AI interview.
+                </p>
+
+            </a>
+
+
+            <a href="/performance" class="action">
+
+                <div class="action-icon">📈</div>
+
+                <h3>Performance</h3>
+
+                <p>
+                    View scores and improvement feedback.
+                </p>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="section">
+
+        <h2>Recent Interview Feedback</h2>
+
+        <div class="feedback">
+
+            {% if feedback %}
+
+                {% for item in feedback|reverse %}
+
+                <div class="feedback-item">
+
+                    <div>
+                        <strong>
+                            Question {{ loop.index }}
+                        </strong>
+                    </div>
+
+                    <div class="score">
+                        Score: {{ item.get("score", 0) }}%
+                    </div>
+
+                    <p style="margin-top:8px;color:#6b7280;">
+                        {{ item.get("better", "Feedback available.") }}
+                    </p>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty">
+                    No interview has been completed yet.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

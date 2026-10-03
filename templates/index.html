@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Interview System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
+
+.navbar{
+    height:72px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    box-shadow:0 2px 15px rgba(0,0,0,.06);
+}
+
+.logo{
+    font-size:23px;
+    font-weight:800;
+    color:#2563eb;
+}
+
+.logo span{
+    color:#111827;
+}
+
+.nav-buttons{
+    display:flex;
+    gap:12px;
+}
+
+.nav-buttons button{
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.login-btn{
+    background:white;
+    color:#2563eb;
+    border:1px solid #2563eb;
+}
+
+.register-btn{
+    background:#2563eb;
+    color:white;
+    border:1px solid #2563eb;
+}
+
+.hero{
+    min-height:520px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:80px 7%;
+    background:linear-gradient(135deg,#eff6ff,#fff,#eef2ff);
+}
+
+.hero-content{
+    max-width:850px;
+}
+
+.badge{
+    display:inline-block;
+    background:#dbeafe;
+    color:#1d4ed8;
+    padding:9px 18px;
+    border-radius:30px;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:58px;
+    line-height:1.1;
+    margin-bottom:22px;
+}
+
+.hero h1 span{
+    color:#2563eb;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.8;
+    color:#5b6475;
+}
+
+.section{
+    padding:80px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title h2{
+    font-size:36px;
+    margin-bottom:12px;
+}
+
+.section-title p{
+    color:#6b7280;
+}
+
+.about-box{
+    max-width:1000px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 10px 35px rgba(0,0,0,.06);
+}
+
+.about-box h3{
+    color:#2563eb;
+    margin-bottom:18px;
+}
+
+.about-box p{
+    line-height:1.8;
+    color:#5b6475;
+}
+
+.features{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.feature-card{
+    background:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.feature-icon{
+    font-size:32px;
+    margin-bottom:15px;
+}
+
+.feature-card h3{
+    margin-bottom:12px;
+}
+
+.feature-card p{
+    color:#6b7280;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.domains{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.domain-card{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    text-align:center;
+    border:1px solid #e5e7eb;
+}
+
+.domain-icon{
+    font-size:30px;
+    margin-bottom:12px;
+}
+
+.steps{
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.step{
+    background:white;
+    padding:30px 20px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 7px 25px rgba(0,0,0,.05);
+}
+
+.step-number{
+    width:45px;
+    height:45px;
+    margin:0 auto 18px;
+    background:#2563eb;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+}
+
+.step p{
+    color:#6b7280;
+    font-size:14px;
+    line-height:1.6;
+}
+
+footer{
+    background:#111827;
+    color:white;
+    text-align:center;
+    padding:35px;
+}
+
+footer p{
+    color:#9ca3af;
+    font-size:14px;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:2000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:600;
+}
+
+.form-group input{
+    width:100%;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+}
+
+.submit-btn{
+    width:100%;
+    padding:13px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+@media(max-width:900px){
+    .features{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .domains{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .steps{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .features,
+    .domains,
+    .steps{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        AI<span>Interview</span>
+    </div>
+
+    <div class="nav-buttons">
+        <button class="login-btn" onclick="openLogin()">Login</button>
+        <button class="register-btn" onclick="openRegister()">Register</button>
+    </div>
+
+</nav>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            AI-Powered Interview Preparation
+        </div>
+
+        <h1>
+            Prepare Smarter.<br>
+            <span>Interview Better.</span>
+        </h1>
+
+        <p>
+            AI-Powered Multi-Domain Interview Preparation
+            and Smart Feedback System helps candidates
+            prepare for interviews using their resume,
+            selected career domain and AI-powered feedback.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>About the Project</h2>
+        <p>Smart and personalized interview preparation.</p>
+    </div>
+
+    <div class="about-box">
+
+        <h3>AI-Powered Multi-Domain Interview Preparation</h3>
+
+        <p>
+            Our system analyzes your resume and prepares
+            personalized interview questions according to
+            your selected career domain.
+        </p>
+
+        <br>
+
+        <p>
+            During the interview, AI evaluates your answers
+            and provides scores, strengths, improvements
+            and better answer suggestions.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>System Features</h2>
+        <p>Everything is available through separate sections.</p>
+    </div>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <div class="feature-icon">📄</div>
+            <h3>Resume Analysis</h3>
+            <p>
+                Upload your resume and get important
+                information such as skills, education
+                and experience.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>AI Question Generation</h3>
+            <p>
+                AI creates personalized questions based
+                on your resume and selected domain.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">🎤</div>
+            <h3>AI Interview</h3>
+            <p>
+                Practice interview questions and submit
+                answers just like a real interview.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Smart Feedback</h3>
+            <p>
+                Receive scores, strengths, improvements
+                and better answer suggestions.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Performance</h3>
+            <p>
+                Review your scores and understand your
+                interview performance.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">👤</div>
+            <h3>Profile</h3>
+            <p>
+                Manage your basic profile information
+                separately.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>Supported Career Domains</h2>
+        <p>Prepare for interviews across multiple fields.</p>
+    </div>
+
+    <div class="domains">
+
+        {% for domain in domains %}
+
+        <div class="domain-card">
+
+            <div class="domain-icon">
+                {% if domain == "IT & Software" %}💻
+                {% elif domain == "Data Analyst" %}📊
+                {% elif domain == "Business & Management" %}💼
+                {% elif domain == "Hotel & Restaurant" %}🏨
+                {% elif domain == "HR" %}👥
+                {% elif domain == "General / Other" %}🌐
+                {% elif domain == "Marketing & Sales" %}📣
+                {% elif domain == "Finance & Accounting" %}💰
+                {% elif domain == "Healthcare & Medical" %}🏥
+                {% elif domain == "Legal & Law" %}⚖️
+                {% elif domain == "Design & Creative" %}🎨
+                {% elif domain == "Engineering & Technical" %}⚙️
+                {% endif %}
+            </div>
+
+            <h4>{{ domain }}</h4>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+        <h2>How It Works</h2>
+        <p>A simple interview preparation process.</p>
+    </div>
+
+    <div class="steps">
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <h3>Upload Resume</h3>
+            <p>Upload your resume for analysis.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <h3>Select Domain</h3>
+            <p>Select your career domain and questions.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <h3>Attend Interview</h3>
+            <p>Answer personalized AI questions.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">4</div>
+            <h3>Get Feedback</h3>
+            <p>Receive AI evaluation and suggestions.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>
+        © 2026 AI-Powered Multi-Domain Interview Preparation
+        and Smart Feedback System
+    </p>
+</footer>
+
+
+<!-- LOGIN -->
+
+<div class="modal" id="loginModal">
+
+    <div class="modal-box">
+
+        <span class="close" onclick="closeLogin()">×</span>
+
+        <h2>Welcome Back</h2>
+
+        <p>Login to continue.</p>
+
+        <form action="/login" method="POST">
+
+            <div class="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter email"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required>
+            </div>
+
+            <button class="submit-btn" type="submit">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- REGISTER -->
+
+<div class="modal" id="registerModal">
+
+    <div class="modal-box">
+
+        <span class="close" onclick="closeRegister()">×</span>
+
+        <h2>Create Account</h2>
+
+        <p>Register to start your preparation.</p>
+
+        <form action="/register" method="POST">
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter email"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create password"
+                    required>
+            </div>
+
+            <button class="submit-btn" type="submit">
+                Create Account
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openLogin(){
+    document.getElementById("loginModal").style.display="flex";
+}
+
+function closeLogin(){
+    document.getElementById("loginModal").style.display="none";
+}
+
+function openRegister(){
+    document.getElementById("registerModal").style.display="flex";
+}
+
+function closeRegister(){
+    document.getElementById("registerModal").style.display="none";
+}
+
+window.onclick=function(event){
+
+    let login=document.getElementById("loginModal");
+    let register=document.getElementById("registerModal");
+
+    if(event.target===login){
+        login.style.display="none";
+    }
+
+    if(event.target===register){
+        register.style.display="none";
+    }
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interview Results</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:#f5f7fb;
+        }
+
+        .header{
+            height:70px;
+            background:linear-gradient(135deg,#667eea,#764ba2);
+            color:white;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 45px;
+        }
+
+        .logo{
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .dashboard-btn{
+            background:white;
+            color:#764ba2;
+            border:none;
+            padding:10px 20px;
+            border-radius:20px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+        .container{
+            max-width:1000px;
+            margin:40px auto;
+            padding:0 20px;
+        }
+
+        .heading{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .heading h1{
+            font-size:32px;
+            margin-bottom:10px;
+        }
+
+        .heading p{
+            color:#666;
+        }
+
+        .score-box{
+            background:white;
+            text-align:center;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 8px 25px rgba(0,0,0,0.08);
+            margin-bottom:25px;
+        }
+
+        .score{
+            font-size:55px;
+            font-weight:bold;
+            color:#764ba2;
+            margin:10px 0;
+        }
+
+        .result-card{
+            background:white;
+            padding:28px;
+            border-radius:18px;
+            margin-bottom:20px;
+            box-shadow:0 6px 20px rgba(0,0,0,0.07);
+        }
+
+        .question{
+            font-size:18px;
+            font-weight:bold;
+            margin-bottom:12px;
+        }
+
+        .answer{
+            background:#f7f7f7;
+            padding:15px;
+            border-radius:10px;
+            margin-bottom:18px;
+            color:#555;
+            line-height:1.5;
+        }
+
+        .score-small{
+            color:#764ba2;
+            font-weight:bold;
+            margin-bottom:15px;
+        }
+
+        .section-title{
+            margin-top:12px;
+            margin-bottom:8px;
+        }
+
+        ul{
+            margin-left:20px;
+            color:#555;
+            line-height:1.7;
+        }
+
+        .better{
+            background:#f7f3fb;
+            padding:15px;
+            border-radius:10px;
+            color:#555;
+            line-height:1.5;
+        }
+
+        .bottom-btn{
+            display:block;
+            margin:30px auto;
+            border:none;
+            background:#764ba2;
+            color:white;
+            padding:13px 30px;
+            border-radius:10px;
+            font-weight:bold;
+            cursor:pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="header">
+
+        <div class="logo">
+            AI Interview System
+        </div>
+
+        <button
+            class="dashboard-btn"
+            onclick="window.location.href='/dashboard'">
+
+            Dashboard
+
+        </button>
+
+    </div>
+
+
+    <div class="container">
+
+
+        <div class="heading">
+
+            <h1>
+                Interview Results 📊
+            </h1>
+
+            <p>
+                Domain: {{ domain }}
+            </p>
+
+        </div>
+
+
+        <div class="score-box">
+
+            <h2>
+                Overall Performance
+            </h2>
+
+            <div class="score">
+                {{ average }}%
+            </div>
+
+            <p>
+                Your interview performance score
+            </p>
+
+        </div>
+
+
+        {% for item in feedback %}
+
+        <div class="result-card">
+
+
+            <div class="question">
+
+                Question {{ loop.index }}:
+                {{ questions[loop.index0] }}
+
+            </div>
+
+
+            <div class="answer">
+
+                <strong>Your Answer:</strong><br><br>
+
+                {{ answers[loop.index0] }}
+
+            </div>
+
+
+            <div class="score-small">
+
+                Score: {{ item.score }}/100
+
+            </div>
+
+
+            <h3 class="section-title">
+                ✅ Strengths
+            </h3>
+
+            <ul>
+
+                {% for strength in item.strengths %}
+
+                <li>
+                    {{ strength }}
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+
+            <h3 class="section-title">
+                ⚠️ Areas for Improvement
+            </h3>
+
+            <ul>
+
+                {% for improvement in item.improvements %}
+
+                <li>
+                    {{ improvement }}
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+
+            <h3 class="section-title">
+                💡 Better Answer Guidance
+            </h3>
+
+            <div class="better">
+
+                {{ item.better }}
+
+            </div>
+
+
+        </div>
+
+        {% endfor %}
+
+
+        <button
+            class="bottom-btn"
+            onclick="window.location.href='/select-domain'">
+
+            Practice Another Interview
+
+        </button>
+
+
+    </div>
+
+
+</body>
+
+</html>

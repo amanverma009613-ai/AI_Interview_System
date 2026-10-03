@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Performance | AI Interview</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#172033;
+}
+
+.navbar{
+    height:72px;
+    background:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 5%;
+    box-shadow:0 2px 15px rgba(0,0,0,.06);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:800;
+    color:#2563eb;
+}
+
+.logo span{
+    color:#111827;
+}
+
+.nav a{
+    margin-left:18px;
+    text-decoration:none;
+    color:#4b5563;
+    font-size:14px;
+    font-weight:600;
+}
+
+.nav a.active{
+    color:#2563eb;
+}
+
+.logout{
+    background:#fee2e2;
+    color:#dc2626 !important;
+    padding:9px 15px;
+    border-radius:8px;
+}
+
+.container{
+    max-width:1050px;
+    margin:auto;
+    padding:45px 25px;
+}
+
+.heading{
+    margin-bottom:30px;
+}
+
+.heading h1{
+    font-size:32px;
+}
+
+.heading p{
+    color:#6b7280;
+    margin-top:8px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.stat{
+    background:white;
+    padding:28px;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.stat span{
+    color:#6b7280;
+}
+
+.stat h2{
+    margin-top:10px;
+    color:#2563eb;
+}
+
+.section{
+    margin-top:35px;
+}
+
+.feedback{
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.item{
+    padding:20px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.item:last-child{
+    border-bottom:none;
+}
+
+.score{
+    color:#2563eb;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.empty{
+    color:#6b7280;
+}
+
+@media(max-width:800px){
+
+    .navbar{
+        height:auto;
+        padding:15px;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        AI<span>Interview</span>
+    </div>
+
+    <div class="nav">
+
+        <a href="/home">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/resume">Resume</a>
+        <a href="/interview-home">Interview</a>
+        <a href="/performance" class="active">Performance</a>
+        <a href="/profile">Profile</a>
+        <a href="/help">Help</a>
+        <a href="/logout" class="logout">Logout</a>
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <div class="heading">
+
+        <h1>Performance</h1>
+
+        <p>
+            Review your interview performance and AI feedback.
+        </p>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <span>Average Score</span>
+            <h2>{{ average }}%</h2>
+        </div>
+
+        <div class="stat">
+            <span>Questions</span>
+            <h2>{{ total_questions }}</h2>
+        </div>
+
+        <div class="stat">
+            <span>Domain</span>
+            <h2 style="font-size:20px;">
+                {{ domain }}
+            </h2>
+        </div>
+
+    </div>
+
+
+    <div class="section">
+
+        <h2>Answer Performance</h2>
+
+        <div class="feedback">
+
+            {% if feedback %}
+
+                {% for item in feedback %}
+
+                <div class="item">
+
+                    <strong>
+                        Question {{ loop.index }}
+                    </strong>
+
+                    <div class="score">
+                        Score: {{ item.get("score", 0) }}%
+                    </div>
+
+                    <br>
+
+                    <strong>Strengths</strong>
+
+                    <ul style="margin:8px 0 12px 20px;line-height:1.6;">
+
+                        {% for strength in item.get("strengths", []) %}
+
+                        <li>{{ strength }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                    <strong>Improvement</strong>
+
+                    <ul style="margin:8px 0 0 20px;line-height:1.6;">
+
+                        {% for improvement in item.get("improvements", []) %}
+
+                        <li>{{ improvement }}</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="empty">
+                    Complete an interview to see your performance.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

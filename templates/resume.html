@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume | AI Interview System</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        body {
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            height: 70px;
+
+            background: #ffffff;
+
+            border-bottom: 1px solid #e5e7eb;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 45px;
+
+        }
+
+
+        .logo {
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+            color: #111827;
+
+        }
+
+
+        .logo span {
+            color: #2563eb;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 22px;
+
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #4b5563;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+
+        .nav-links .active {
+            color: #2563eb;
+        }
+
+
+        .logout {
+            color: #dc2626 !important;
+        }
+
+
+        /* ================= PAGE ================= */
+
+        .container {
+
+            max-width: 1050px;
+
+            margin: 45px auto;
+
+            padding: 0 20px;
+
+        }
+
+
+        .page-title {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .page-title h1 {
+
+            font-size: 34px;
+
+            margin-bottom: 10px;
+
+            color: #111827;
+
+        }
+
+
+        .page-title p {
+
+            color: #6b7280;
+
+            font-size: 15px;
+
+        }
+
+
+        /* ================= CARD ================= */
+
+        .card {
+
+            background: white;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 18px;
+
+            padding: 32px;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.05);
+
+        }
+
+
+        .card h2 {
+
+            font-size: 22px;
+
+            margin-bottom: 8px;
+
+            color: #111827;
+
+        }
+
+
+        .subtitle {
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* ================= GREEN SUCCESS ================= */
+
+        .success-notification {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            background: #ecfdf5;
+
+            border: 1px solid #86efac;
+
+            color: #15803d;
+
+            padding: 15px 18px;
+
+            border-radius: 10px;
+
+            margin-bottom: 25px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+        }
+
+
+        .success-icon {
+
+            width: 25px;
+
+            height: 25px;
+
+            border-radius: 50%;
+
+            background: #16a34a;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 14px;
+
+        }
+
+
+        /* ================= ERROR ================= */
+
+        .error-notification {
+
+            background: #fef2f2;
+
+            border: 1px solid #fecaca;
+
+            color: #dc2626;
+
+            padding: 15px 18px;
+
+            border-radius: 10px;
+
+            margin-bottom: 25px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        /* ================= UPLOAD BOX ================= */
+
+        .upload-box {
+
+            border: 2px dashed #cbd5e1;
+
+            background: #f8fafc;
+
+            border-radius: 15px;
+
+            padding: 40px 30px;
+
+            text-align: center;
+
+        }
+
+
+        .upload-icon {
+
+            font-size: 48px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .upload-box h3 {
+
+            font-size: 19px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .upload-box p {
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .file-input {
+
+            display: block;
+
+            width: 100%;
+
+            max-width: 600px;
+
+            margin: auto;
+
+            padding: 12px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 9px;
+
+            background: white;
+
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .button {
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 14px 30px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .upload-button {
+
+            margin-top: 18px;
+
+            background: #2563eb;
+
+            color: white;
+
+        }
+
+
+        .upload-button:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* ================= ANALYZE BUTTON ================= */
+
+        .analyze-section {
+
+            text-align: center;
+
+            padding-top: 5px;
+
+        }
+
+
+        .analyze-button {
+
+            background: #7c3aed;
+
+            color: white;
+
+            min-width: 230px;
+
+        }
+
+
+        .analyze-button:hover {
+            background: #6d28d9;
+        }
+
+
+        /* ================= ANALYSIS ================= */
+
+        .analysis-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+
+        }
+
+
+        .analysis-item {
+
+            background: #f8fafc;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+        }
+
+
+        .analysis-item h4 {
+
+            color: #6b7280;
+
+            font-size: 13px;
+
+            margin-bottom: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .3px;
+
+        }
+
+
+        .analysis-item p {
+
+            color: #111827;
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* ================= SKILLS ================= */
+
+        .skills-container {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+        }
+
+
+        .skill-tag {
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            border-radius: 20px;
+
+            padding: 7px 12px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* ================= INTERVIEW SETUP ================= */
+
+        .setup-box {
+
+            background: #f8fafc;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 14px;
+
+            padding: 25px;
+
+        }
+
+
+        .setup-box h3 {
+
+            font-size: 20px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            color: #374151;
+
+        }
+
+
+        select {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 9px;
+
+            background: white;
+
+            font-size: 15px;
+
+            color: #111827;
+
+            outline: none;
+
+        }
+
+
+        select:focus {
+            border-color: #2563eb;
+        }
+
+
+        .info-box {
+
+            background: #eff6ff;
+
+            border: 1px solid #bfdbfe;
+
+            color: #1e40af;
+
+            padding: 14px;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-top: 5px;
+
+        }
+
+
+        .start-button {
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 9px;
+
+            padding: 15px;
+
+            margin-top: 20px;
+
+            background: #16a34a;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .start-button:hover {
+            background: #15803d;
+        }
+
+
+        /* ================= HIDDEN ================= */
+
+        .hidden {
+            display: none;
+        }
+
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .nav-links {
+                gap: 9px;
+            }
+
+            .nav-links a {
+                font-size: 10px;
+            }
+
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 24px;
+            }
+
+            .page-title h1 {
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<div class="navbar">
+
+    <div class="logo">
+
+        AI <span>Interview</span> System
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="/home">
+            Home
+        </a>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/resume" class="active">
+            Resume
+        </a>
+
+        <a href="/interview-home">
+            Interview
+        </a>
+
+        <a href="/performance">
+            Performance
+        </a>
+
+        <a href="/profile">
+            Profile
+        </a>
+
+        <a href="/help">
+            Help
+        </a>
+
+        <a href="/logout" class="logout">
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="container">
+
+
+    <div class="page-title">
+
+        <h1>
+            Resume Analysis
+        </h1>
+
+        <p>
+            Upload your resume and get personalized
+            AI-powered interview preparation.
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         STEP 1 — UPLOAD
+    ================================================= -->
+
+    <div class="card">
+
+        <h2>
+            📄 Upload Your Resume
+        </h2>
+
+        <p class="subtitle">
+            Upload your latest resume in PDF, DOCX or TXT format.
+        </p>
+
+
+        <!-- GREEN SUCCESS -->
+
+        {% if success %}
+
+        <div class="success-notification">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <div>
+                Resume Upload Successful
+                {% if resume_filename %}
+                    — {{ resume_filename }}
+                {% endif %}
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- RED ERROR -->
+
+        {% if error %}
+
+        <div class="error-notification">
+
+            ❌ {{ error }}
+
+        </div>
+
+        {% endif %}
+
+
+
+        <form
+            action="/upload"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+            <div class="upload-box">
+
+                <div class="upload-icon">
+                    📄
+                </div>
+
+
+                <h3>
+                    Select Your Resume
+                </h3>
+
+
+                <p>
+                    Supported formats: PDF, DOCX, TXT
+                </p>
+
+
+                <input
+                    type="file"
+                    name="resume"
+                    class="file-input"
+                    accept=".pdf,.docx,.txt"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="button upload-button"
+                >
+
+                    Upload Resume
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+    <!-- =================================================
+         STEP 2 — ANALYZE BUTTON
+         Only appears after successful upload
+    ================================================= -->
+
+    {% if resume_filename and not resume_analysis %}
+
+    <div class="card">
+
+        <div class="analyze-section">
+
+            <h2>
+                Resume Uploaded Successfully
+            </h2>
+
+            <p class="subtitle">
+                Your resume is ready. Click the button below
+                to analyze your Name, Skills, Experience and Education.
+            </p>
+
+
+            <form
+                action="/analyze-resume"
+                method="POST"
+            >
+
+                <button
+                    type="submit"
+                    class="button analyze-button"
+                >
+
+                    🔍 Analyze Resume
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+    <!-- =================================================
+         STEP 3 — RESUME ANALYSIS
+         Only appears after Analyze
+    ================================================= -->
+
+    {% if resume_analysis %}
+
+    <div class="card">
+
+        <h2>
+            🤖 Resume Analysis
+        </h2>
+
+        <p class="subtitle">
+
+            AI Interview System has analyzed your uploaded resume.
+
+        </p>
+
+
+        <div class="analysis-grid">
+
+
+            <!-- NAME -->
+
+            <div class="analysis-item">
+
+                <h4>
+                    Name Detected
+                </h4>
+
+                <p>
+
+                    {{ resume_analysis.get(
+                        "name",
+                        "Not detected"
+                    ) }}
+
+                </p>
+
+            </div>
+
+
+
+            <!-- EXPERIENCE -->
+
+            <div class="analysis-item">
+
+                <h4>
+                    Experience
+                </h4>
+
+                <p>
+
+                    {{ resume_analysis.get(
+                        "experience",
+                        "Not detected"
+                    ) }}
+
+                </p>
+
+            </div>
+
+
+
+            <!-- EDUCATION -->
+
+            <div class="analysis-item">
+
+                <h4>
+                    Education
+                </h4>
+
+                <p>
+
+                    {{ resume_analysis.get(
+                        "education",
+                        "Not detected"
+                    ) }}
+
+                </p>
+
+            </div>
+
+
+
+            <!-- SKILLS -->
+
+            <div class="analysis-item">
+
+                <h4>
+                    Skills
+                </h4>
+
+
+                {% if resume_analysis.get("skills") %}
+
+                    <div class="skills-container">
+
+                        {% for skill in resume_analysis.get("skills") %}
+
+                            <span class="skill-tag">
+
+                                {{ skill }}
+
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% else %}
+
+                    <p>
+                        No skills detected from resume.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         STEP 4 — DOMAIN + QUESTION SELECTION
+         Only appears after analysis
+    ================================================= -->
+
+    <div class="card">
+
+        <h2>
+            🎯 Interview Setup
+        </h2>
+
+        <p class="subtitle">
+
+            Resume analysis is complete.
+            Select your interview domain and number of questions.
+
+        </p>
+
+
+        <div class="setup-box">
+
+            <h3>
+                Start Your AI Interview
+            </h3>
+
+
+            <form
+                action="/select-domain"
+                method="POST"
+            >
+
+
+                <!-- DOMAIN -->
+
+                <div class="form-group">
+
+                    <label for="domain">
+
+                        Select Interview Domain
+
+                    </label>
+
+
+                    <select
+                        id="domain"
+                        name="domain"
+                        required
+                    >
+
+                        <option value="">
+
+                            -- Select Domain --
+
+                        </option>
+
+
+                        <option value="IT & Software">
+                            IT & Software
+                        </option>
+
+
+                        <option value="Data Analyst">
+                            Data Analyst
+                        </option>
+
+
+                        <option value="Business & Management">
+                            Business & Management
+                        </option>
+
+
+                        <option value="Hotel & Restaurant">
+                            Hotel & Restaurant
+                        </option>
+
+
+                        <option value="HR">
+                            HR
+                        </option>
+
+
+                        <option value="General / Other">
+                            General / Other
+                        </option>
+
+
+                        <option value="Marketing & Sales">
+                            Marketing & Sales
+                        </option>
+
+
+                        <option value="Finance & Accounting">
+                            Finance & Accounting
+                        </option>
+
+
+                        <option value="Healthcare & Medical">
+                            Healthcare & Medical
+                        </option>
+
+
+                        <option value="Legal & Law">
+                            Legal & Law
+                        </option>
+
+
+                        <option value="Design & Creative">
+                            Design & Creative
+                        </option>
+
+
+                        <option value="Engineering & Technical">
+                            Engineering & Technical
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- QUESTION COUNT -->
+
+                <div class="form-group">
+
+                    <label for="num_questions">
+
+                        Number of Interview Questions
+
+                    </label>
+
+
+                    <select
+                        id="num_questions"
+                        name="num_questions"
+                        required
+                    >
+
+                        <option value="">
+
+                            -- Select Questions --
+
+                        </option>
+
+
+                        <option value="5">
+                            5 Questions
+                        </option>
+
+
+                        <option value="10">
+                            10 Questions
+                        </option>
+
+
+                        <option value="15">
+                            15 Questions
+                        </option>
+
+
+                        <option value="20">
+                            20 Questions
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- INFORMATION -->
+
+                <div class="info-box">
+
+                    💡 <strong>AI Personalization:</strong>
+
+                    The AI will use your uploaded resume,
+                    detected skills, education and experience
+                    along with your selected domain to create
+                    personalized interview questions.
+
+                </div>
+
+
+
+                <!-- START BUTTON -->
+
+                <button
+                    type="submit"
+                    class="start-button"
+                >
+
+                    🚀 Start AI Interview
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+</div>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Select Interview</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f3ff;
+            min-height: 100vh;
+            color: #222;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #5b21b6, #7c3aed);
+            color: white;
+            padding: 22px 50px;
+        }
+
+        .header h1 {
+            font-size: 26px;
+        }
+
+        .header p {
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+
+        .welcome {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .welcome h2 {
+            color: #5b21b6;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #555;
+        }
+
+        .section-title {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .domain-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .domain-card {
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 15px;
+            padding: 22px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .domain-card:hover {
+            border-color: #7c3aed;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(124,58,237,0.15);
+        }
+
+        .domain-card input {
+            display: none;
+        }
+
+        .domain-card label {
+            cursor: pointer;
+            display: block;
+        }
+
+        .domain-card h3 {
+            color: #5b21b6;
+            margin-bottom: 8px;
+        }
+
+        .domain-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .domain-card.selected {
+            border-color: #7c3aed;
+            background: #f3e8ff;
+        }
+
+        .question-section {
+            margin-top: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .question-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .question-option {
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .question-option:hover {
+            border-color: #7c3aed;
+        }
+
+        .question-option input {
+            display: none;
+        }
+
+        .question-option label {
+            cursor: pointer;
+            display: block;
+        }
+
+        .question-option strong {
+            display: block;
+            font-size: 22px;
+            color: #5b21b6;
+        }
+
+        .question-option span {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .question-option.selected {
+            background: #f3e8ff;
+            border-color: #7c3aed;
+        }
+
+        .start-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #5b21b6, #7c3aed);
+            color: white;
+            border: none;
+            padding: 15px 45px;
+            border-radius: 10px;
+            font-size: 17px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .start-btn:hover {
+            opacity: 0.9;
+        }
+
+        .analysis-box {
+            margin-top: 25px;
+            background: #faf5ff;
+            border-left: 5px solid #7c3aed;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .analysis-box h3 {
+            color: #5b21b6;
+            margin-bottom: 12px;
+        }
+
+        .analysis-box p {
+            margin: 7px 0;
+            color: #444;
+        }
+
+        @media (max-width: 800px) {
+            .domain-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .question-options {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .domain-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .question-options {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>AI Interview System</h1>
+        <p>Personalized Interview Preparation & Smart Feedback</p>
+    </div>
+
+    <div class="container">
+
+        <div class="welcome">
+            <h2>Configure Your AI Interview</h2>
+
+            <p>
+                Select your interview domain and choose how many questions
+                you want the AI to ask.
+            </p>
+        </div>
+
+        {% if analysis %}
+
+        <div class="analysis-box">
+
+            <h3>📄 Resume Analysis</h3>
+
+            <p>
+                <strong>Name:</strong>
+                {{ analysis.get("name", "Not detected") }}
+            </p>
+
+            <p>
+                <strong>Education:</strong>
+                {{ analysis.get("education", []) | join(", ") or "Not detected" }}
+            </p>
+
+            <p>
+                <strong>Experience:</strong>
+                {{ analysis.get("experience", "Not detected") }}
+            </p>
+
+            <p>
+                <strong>Skills:</strong>
+                {{ analysis.get("skills", []) | join(", ") or "No skills detected" }}
+            </p>
+
+            <p>
+                <strong>Suggested Domains:</strong>
+                {{ analysis.get("suggested_domains", []) | join(", ") }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST" action="/select-domain">
+
+            <h2 class="section-title" style="margin-top:30px;">
+                1. Select Interview Domain
+            </h2>
+
+            <div class="domain-grid">
+
+                <div class="domain-card" onclick="selectDomain(this)">
+                    <input
+                        type="radio"
+                        name="domain"
+                        value="Software Development"
+                        required
+                    >
+
+                    <label>
+                        <h3>💻 Software Development</h3>
+                        <p>
+                            Programming, Web Development, APIs,
+                            Python, Java and Software concepts.
+                        </p>
+                    </label>
+                </div>
+
+
+                <div class="domain-card" onclick="selectDomain(this)">
+                    <input
+                        type="radio"
+                        name="domain"
+                        value="Data Analyst"
+                    >
+
+                    <label>
+                        <h3>📊 Data Analyst</h3>
+                        <p>
+                            SQL, Excel, Power BI, Python,
+                            Statistics and Data Analysis.
+                        </p>
+                    </label>
+                </div>
+
+
+                <div class="domain-card" onclick="selectDomain(this)">
+                    <input
+                        type="radio"
+                        name="domain"
+                        value="Business & Management"
+                    >
+
+                    <label>
+                        <h3>💼 Business & Management</h3>
+                        <p>
+                            Business, Management, Problem Solving
+                            and Decision Making.
+                        </p>
+                    </label>
+                </div>
+
+
+                <div class="domain-card" onclick="selectDomain(this)">
+                    <input
+                        type="radio"
+                        name="domain"
+                        value="Hotel & Hospitality"
+                    >
+
+                    <label>
+                        <h3>🏨 Hotel & Hospitality</h3>
+                        <p>
+                            Guest handling, Hospitality,
+                            Communication and Service.
+                        </p>
+                    </label>
+                </div>
+
+
+                <div class="domain-card" onclick="selectDomain(this)">
+                    <input
+                        type="radio"
+                        name="domain"
+                        value="General / HR"
+                    >
+
+                    <label>
+                        <h3>👥 HR / General</h3>
+                        <p>
+                            HR questions, Introduction,
+                            Strengths, Goals and Behaviour.
+                        </p>
+                    </label>
+                </div>
+
+            </div>
+
+
+            <div class="question-section">
+
+                <h2>
+                    2. How Many Questions Should AI Ask?
+                </h2>
+
+                <p style="margin-top:8px;color:#666;">
+                    Choose the number of questions for your interview.
+                </p>
+
+
+                <div class="question-options">
+
+                    <div class="question-option"
+                         onclick="selectQuestion(this)">
+
+                        <input
+                            type="radio"
+                            name="num_questions"
+                            value="5"
+                            required
+                        >
+
+                        <label>
+                            <strong>5</strong>
+                            <span>Questions</span>
+                        </label>
+
+                    </div>
+
+
+                    <div class="question-option"
+                         onclick="selectQuestion(this)">
+
+                        <input
+                            type="radio"
+                            name="num_questions"
+                            value="10"
+                        >
+
+                        <label>
+                            <strong>10</strong>
+                            <span>Questions</span>
+                        </label>
+
+                    </div>
+
+
+                    <div class="question-option"
+                         onclick="selectQuestion(this)">
+
+                        <input
+                            type="radio"
+                            name="num_questions"
+                            value="15"
+                        >
+
+                        <label>
+                            <strong>15</strong>
+                            <span>Questions</span>
+                        </label>
+
+                    </div>
+
+
+                    <div class="question-option"
+                         onclick="selectQuestion(this)">
+
+                        <input
+                            type="radio"
+                            name="num_questions"
+                            value="20"
+                        >
+
+                        <label>
+                            <strong>20</strong>
+                            <span>Questions</span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="start-section">
+
+                <button
+                    type="submit"
+                    class="start-btn"
+                >
+                    🚀 Start AI Interview
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+
+    <script>
+
+        function selectDomain(card) {
+
+            document
+                .querySelectorAll(".domain-card")
+                .forEach(function(item) {
+                    item.classList.remove("selected");
+                });
+
+            card.classList.add("selected");
+
+            card.querySelector("input").checked = true;
+        }
+
+
+        function selectQuestion(option) {
+
+            document
+                .querySelectorAll(".question-option")
+                .forEach(function(item) {
+                    item.classList.remove("selected");
+                });
+
+            option.classList.add("selected");
+
+            option.querySelector("input").checked = true;
+        }
+
+    </script>
+
+</body>
+</html>
