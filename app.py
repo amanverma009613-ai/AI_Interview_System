@@ -1847,8 +1847,7 @@ Do not invent candidate experience.
 def public_home():
 
     return render_template(
-        "index.html",
-        domains=DOMAINS
+        "index.html"
     )
 
 
@@ -1897,6 +1896,17 @@ def login():
                 "user_name"
             ] = "User"
 
+        # Keep profile available after login
+        if not session.get("profile"):
+            session["profile"] = {
+                "name": session.get("user_name", "User"),
+                "email": email,
+                "phone": "",
+                "education": "",
+                "career_goal": "",
+                "photo": None
+            }
+
 
         return redirect(
             url_for("home")
@@ -1941,6 +1951,17 @@ def register():
             "user_email"
         ] = email
 
+        # Save basic profile automatically at registration
+        existing_profile = session.get("profile", {})
+        session["profile"] = {
+            "name": name or "User",
+            "email": email,
+            "phone": existing_profile.get("phone", ""),
+            "education": existing_profile.get("education", ""),
+            "career_goal": existing_profile.get("career_goal", ""),
+            "photo": existing_profile.get("photo")
+        }
+
 
         return redirect(
             url_for("home")
@@ -1960,8 +1981,7 @@ def register():
 def home():
 
     return render_template(
-        "home.html",
-        domains=DOMAINS
+        "home.html"
     )
 
 
@@ -2736,11 +2756,27 @@ def results():
 def profile():
 
     # Existing profile
+    profile_data = session.get("profile", {})
 
-    profile_data = session.get(
-        "profile",
-        {}
-    )
+    # Automatically create profile from registered/login user
+    if not profile_data:
+        profile_data = {
+            "name": session.get("user_name", "User"),
+            "email": session.get("user_email", ""),
+            "phone": "",
+            "education": "",
+            "career_goal": "",
+            "photo": None
+        }
+        session["profile"] = profile_data
+    else:
+        profile_data.setdefault("name", session.get("user_name", "User"))
+        profile_data.setdefault("email", session.get("user_email", ""))
+        profile_data.setdefault("phone", "")
+        profile_data.setdefault("education", "")
+        profile_data.setdefault("career_goal", "")
+        profile_data.setdefault("photo", None)
+        session["profile"] = profile_data
 
 
     if request.method == "POST":
@@ -2902,10 +2938,14 @@ def profile():
         # Update logged-in name
 
         if name:
-
             session[
                 "user_name"
             ] = name
+
+        if email:
+            session[
+                "user_email"
+            ] = email
 
 
         session[
