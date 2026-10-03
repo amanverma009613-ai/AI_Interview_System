@@ -1,0 +1,6 @@
+Flask
+Werkzeug
+pypdf
+python-docx
+openai
+gunicorn
